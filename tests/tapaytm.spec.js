@@ -1,0 +1,42 @@
+import { test, expect } from '@playwright/test';
+
+
+test('test', async ({ page }) => {
+  await page.goto('https://in-uat.pwa.kfc.dev/');
+  await page.getByTestId('start-order-button').click();
+  await page.getByTestId('disposition-order-click-handler-Disposition - Pickup').click();
+  await page.getByTestId('store-search-input').click();
+  await page.locator('body').press('CapsLock');
+  await page.getByTestId('store-search-input').fill('G');
+  await page.getByTestId('store-search-input').press('CapsLock');
+  await page.getByTestId('store-search-input').fill('Gachibowli');
+  await page.getByText('Gachibowli, Hyderabad, Telangana, India', { exact: true }).click();
+  await page.getByTestId('searchstore-component').locator('div').filter({ hasText: 'KFC RBD Gachibowli0.9 kmdeliverydine-inPick upGround Floor, Survey No. 124,' }).getByTestId('order-now').click();
+  await page.locator('#category-name-CAT3467').getByTestId('category-click-test').click();
+  await page.getByTestId('add-to-cart-A-32069-0').click();
+  await page.getByTestId('product-listing-button').click();
+ await page.getByTestId('normal-icon').getByRole('button', { name: 'Close' }).click();
+  await page.getByTestId('navigation-checkout-desktop').click();
+  await page.getByTestId('continue-as-a-gust').click();
+  await page.getByTestId('Full Name-masktextlabel-id').click();
+  await page.getByTestId('enter-Full Name-details').press('CapsLock');
+  await page.getByTestId('enter-Full Name-details').fill('D');
+  await page.getByTestId('enter-Full Name-details').press('CapsLock');
+  await page.getByTestId('enter-Full Name-details').fill('Disha');
+  await page.getByTestId('email-masktextlabel-id').click();
+  await page.getByTestId('enter-email-details').fill('dbc3466@yum.com');
+  await page.getByTestId('phoneNumber-masktextlabel-id').click();
+  await page.getByTestId('enter-phoneNumber-details').fill('9163527676');
+  await page.getByTestId('pay-button').click();
+  await page.getByTestId('radio-label-paytm').click();
+  await page.getByTestId('continue-to-payment-btn').click();
+  await page.goto('https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=RRUUJH75187222565310&orderId=d223183b-1e92-43e3-ae9f-4d1f34a3cd90');
+  await page.getByText('Net Banking').click();
+  await page.getByRole('button', { name: 'PAY Rs188.71' }).click();
+  await page.getByRole('button', { name: 'clr icon Successful' }).click();
+  await page.getByText('READY IN JUST A SECOND.').click();
+  await page.getByText('CONFIRMING YOUR ORDER.').click();
+  await page.getByText('Your order has been received!').click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByTestId('menu-name-Menu').click();
+});

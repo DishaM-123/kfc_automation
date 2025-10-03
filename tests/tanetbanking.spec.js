@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://in-uat.pwa.kfc.dev/');
+  await page.getByTestId('start-order-button').click();
+  await page.getByTestId('disposition-order-click-handler-Disposition - Pickup').click();
+  await page.getByTestId('store-search-input').click();
+  await page.getByTestId('store-search-input').fill('nadaun');
+  await page.getByText('Nadaun, Himachal Pradesh, India', { exact: true }).click();
+  await page.getByTestId('searchstore-component').locator('div').filter({ hasText: 'Test Aloha0.4 kmdeliverydine-' }).getByTestId('order-now').click();
+  await page.locator('#category-name-CAT3417').getByTestId('category-click-test').click();
+  await page.getByTestId('add-to-cart-A-34660-0').click();
+  await page.getByTestId('product-listing-button').click();
+ await page.getByTestId('normal-icon').getByRole('button', { name: 'Close' }).click();
+  await page.getByTestId('navigation-checkout-desktop').click();
+  await page.getByTestId('continue-as-a-gust').click();
+  await page.getByTestId('Full Name-masktextlabel-id').click();
+  await page.getByTestId('enter-Full Name-details').press('CapsLock');
+  await page.getByTestId('enter-Full Name-details').fill('D');
+  await page.getByTestId('enter-Full Name-details').press('CapsLock');
+  await page.getByTestId('enter-Full Name-details').fill('Disha');
+  await page.getByTestId('email-masktextlabel-id').click();
+  await page.getByTestId('enter-email-details').fill('dbc3466@yum.com');
+  await page.getByTestId('phoneNumber-masktextlabel-id').click();
+  await page.getByTestId('enter-phoneNumber-details').fill('9163527667');
+  await page.getByTestId('pay-button').click();
+  await page.locator('div').filter({ hasText: /^UPI \/ Netbanking \/ Credit card \/ Debit card$/ }).nth(1).click();
+  await page.getByTestId('continue-to-payment-btn').click();
+  await page.goto('https://mercury-uat.phonepe.com/transact/simulator?token=3vHK4F49D5Rg1kw8ayxsMptF3GqIqIvmb34xWpht931UNxTc8za3HdcQJ');
+  await page.getByRole('radio', { name: 'Net Banking' }).check();
+  await page.getByRole('button', { name: 'PAY ₹' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.goto('https://in-uat.pwa.kfc.dev/order-processing');
+  await page.getByText('Processing your order. ready').click();
+  await page.getByText('Your order has been received!').click();
+});
