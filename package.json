@@ -19,14 +19,14 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DishaM-123/KFC.git"
+    "url": "https://github.com/DishaM-123/kfc_automation.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/DishaM-123/KFC/issues"
+    "url": "https://github.com/DishaM-123/kfc_automation/issues"
   },
-  "homepage": "https://github.com/DishaM-123/KFC#readme"
+  "homepage": "https://github.com/DishaM-123/kfc_automation#readme"
 }
