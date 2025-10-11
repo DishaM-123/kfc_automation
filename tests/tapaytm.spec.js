@@ -30,7 +30,7 @@ test('test', async ({ page }) => {
   await page.getByTestId('pay-button').click();
   await page.getByTestId('radio-label-paytm').click();
   await page.getByTestId('continue-to-payment-btn').click();
-  await page.goto('https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=RRUUJH75187222565310&orderId=d223183b-1e92-43e3-ae9f-4d1f34a3cd90');
+  //await page.goto('https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=RRUUJH75187222565310&orderId=d223183b-1e92-43e3-ae9f-4d1f34a3cd90');
   await page.getByText('Net Banking').click();
   await page.getByRole('button', { name: 'PAY Rs188.71' }).click();
   await page.getByRole('button', { name: 'clr icon Successful' }).click();

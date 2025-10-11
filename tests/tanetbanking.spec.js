@@ -23,17 +23,24 @@ test('test', async ({ page }) => {
   await page.getByTestId('enter-Full Name-details').press('CapsLock');
   await page.getByTestId('enter-Full Name-details').fill('Disha');
   await page.getByTestId('email-masktextlabel-id').click();
-  await page.getByTestId('enter-email-details').fill('debc3466@yum.com');
+  await page.getByTestId('enter-email-details').fill('dbc3466@yum.com');
   await page.getByTestId('phoneNumber-masktextlabel-id').click();
   await page.getByTestId('enter-phoneNumber-details').fill('9163527676');
   await page.getByTestId('pay-button').click();
   await page.getByText('UPI / Netbanking / Credit').click();
   await page.getByTestId('continue-to-payment-btn').click();
-  await page.goto('https://mercury-uat.phonepe.com/transact/simulator?token=3vHK4F49D5Rg1lDHSMPbltMw8Bijgs3bALLhAD8u11hbkxwsxBlV9NZ4p');
-  //await page.getByRole('radio', { name: 'Net Banking' }).check();
+  //await page.goto('https://mercury-uat.phonepe.com/transact/simulator?token=3vHK4F49D5Rg1lCyH1p2HMenKGn81BkFPxuPbxrtF0m6y06i1126mD2jb', { waitUntil: 'load' });
+  await page.getByRole('radio', { name: 'Net Banking' }).check();
+  
   await page.getByRole('button', { name: 'PAY ₹' }).click();
+  await page.getByText('Success').click();
   await page.getByRole('button', { name: 'Submit' }).click();
-  await page.getByText('Processing your order. ready').click();
-  await page.getByText('Your order has been received!').click();
-  await page.getByRole('button', { name: 'Close' }).click();
+  
+  // then wait for order-processing (app may take a few seconds)
+await page.waitForURL('**/order-processing', { timeout: 50000, waitUntil: 'domcontentloaded'  });
+expect(page.url()).toContain('/order-processing');
+
+// finally wait for payment-success
+await page.waitForURL('**/payment-success', { timeout: 50000, waitUntil: 'domcontentloaded'  });
+expect(page.url()).toContain('/payment-success');
 });

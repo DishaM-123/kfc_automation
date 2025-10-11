@@ -29,5 +29,5 @@ test('test', async ({ page }) => {
   await page.getByTestId('radio-label-pay-by-cash').click();
   await page.getByTestId('continue-to-payment-btn').click();
 
-  //await page.getByRole('button', { name: 'Close' }).click();
-});
+ 
+ });
