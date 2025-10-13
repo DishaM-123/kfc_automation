@@ -30,23 +30,16 @@ test('test', async ({ page, context}) => {
   await page.locator('body').click();
   await page.locator('.payment-option').first().click();
   await page.getByTestId('radio-label-paytm').click();
-  await Promise.all([
-  page.waitForNavigation({ url: /paytm\.in/, timeout: 120000 }),
-  page.getByTestId('continue-to-payment-btn').click()
-]);
-  await page.getByTestId('continue-to-payment-btn').click();
-   const paytmPage = await context.waitForEvent('page');
 
-  await paytmPage.waitForLoadState('domcontentloaded');
-  await page.goto('https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage')
-  await page.getByTestId('radio-Netbanking').click();
-   await paytmPage.getByRole('button', { name: /PAY/i }).click();
+  await page.getByTestId('continue-to-payment-btn').click()
+
+  //await page.goto('https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage')
+  await page.getByText('Net Banking').click();
+   //await paytmPage.getByRole('button', { name: /PAY/i }).click();
    await page.getByRole('button', { name: 'PAY Rs125.47' }).click();
   await page.getByRole('button', { name: 'clr icon Successful' }).click();
   await page.getByText('READY IN JUST A SECOND.').click();
   await page.getByText('CONFIRMING YOUR ORDER.').click();
   await page.getByText('Your order has been received!').click();
   await page.getByRole('button', { name: 'Close' }).click();
-  //await page.getByTestId('menu-name-Menu').click();
-  await page.getByTestId('home-btn').locator('img').click();
-});
+  });
