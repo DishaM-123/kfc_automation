@@ -1,10 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
- test.setTimeout(120000);
-  await page.goto('https://in-uat.pwa.kfc.dev/',
-  {waitUntil: 'domcontentloaded',
-    timeout: 6000});
+  await page.goto('https://in-uat.pwa.kfc.dev/'),
+  
   await page.getByTestId('start-order-button').click();
     await page.getByTestId('disposition-order-click-handler-Disposition - Dine in').click();
   await page.getByTestId('store-search-input').fill('gachi');

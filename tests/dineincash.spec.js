@@ -30,5 +30,13 @@ test('test', async ({ page }) => {
   await page.locator('body').click();
   await page.locator('.payment-option').first().click();
   await page.getByTestId('continue-to-payment-btn').click();
-  await page.getByTestId('home-btn').locator('img').click();
+  // then wait for order-processing (app may take a few seconds)
+await page.waitForURL('**/order-processing', { timeout: 50000, waitUntil: 'domcontentloaded'  });
+expect(page.url()).toContain('/order-processing');
+
+// finally wait for payment-success
+await page.waitForURL('**/payment-success', { timeout: 50000, waitUntil: 'domcontentloaded'  });
+expect(page.url()).toContain('/payment-success');
+  //await page.getByTestId('home-btn').locator('img').click();
+
 });
