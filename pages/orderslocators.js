@@ -1,0 +1,26 @@
+
+export const locators = {
+  startOrderButton: 'start-order-button',
+  pickupOption: 'disposition-order-click-handler-Disposition - Pickup',
+  storeSearchInput: 'store-search-input',
+  searchStoreComponent: 'searchstore-component',
+  category: '#category-name-CAT3417',
+  addToCart: 'add-to-cart-A-31537-41075',
+  closeCart: 'normal-icon',
+  checkoutNav: 'navigation-checkout-desktop',
+  continueAsGuest: 'continue-as-a-gust',
+  fullNameInput: 'enter-Full Name-details',
+  emailInput: 'enter-email-details',
+  phoneInput: 'enter-phoneNumber-details',
+  payButton: 'pay-button',
+  phonePeOption: 'radio-label-phonepe',
+  continueToPayment: 'continue-to-payment-btn',
+  cardRadio: { role: 'radio', name: 'Card' },
+  cardNumber: { role: 'textbox', name: 'Enter your card number' },
+  cardHolder: { role: 'textbox', name: 'Enter card holder’s full name' },
+  expiryMonth: { role: 'textbox', name: 'MM' },
+  expiryYear: { role: 'textbox', name: 'YY' },
+  cvv: { role: 'textbox', name: 'CVV' },
+  payNow: { role: 'button', name: 'PAY ₹' },
+  submit: { role: 'button', name: 'Submit' }
+};
