@@ -2,7 +2,9 @@
 export const testData = {
   url: 'https://in-uat.pwa.kfc.dev/',
   storeSearch: 'nadau',
+  paytmSearch : 'gachibowli',
   storeLocation: 'Nadaun, Himachal Pradesh, India',
+  paytmstore: 'Gachibowli, Hyderabad, Telangana, India',
   customer: {
     name: 'Disha',
     email: 'dbc3466@yum.com',

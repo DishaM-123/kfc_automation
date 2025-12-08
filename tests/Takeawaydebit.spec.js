@@ -1,9 +1,9 @@
 // order.test.js
 import { test, expect } from '@playwright/test';
-import { locators } from '..//pages/orderslocators.js';
-import { testData } from '..//data/testdata.js';
+import { locators } from '../pages/orderslocators.js';
+import { testData } from '../data/testdata.js';
 
-test('KFC order flow', async ({ page }) => {
+test('KFC Take away Debit Card order flow', async ({ page }) => {
   // Start order
   await page.goto(testData.url);
   await page.getByTestId(locators.startOrderButton).click();

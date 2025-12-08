@@ -1,36 +1,40 @@
 import { test, expect } from '@playwright/test';
+import { locators } from '../pages/orderslocators.js';
+import { testData } from '../data/testdata.js';
 
 test('test', async ({ page }) => {
-  await page.goto('https://in-uat.pwa.kfc.dev/');
-  await page.getByTestId('start-order-button').click();
-  await page.getByTestId('disposition-order-click-handler-Disposition - Pickup').click();
-  await page.getByTestId('store-search-input').click();
-  await page.getByTestId('store-search-input').press('CapsLock');
-  await page.getByTestId('store-search-input').fill('N');
-  await page.getByTestId('store-search-input').press('CapsLock');
-  await page.getByTestId('store-search-input').fill('Nadaun');
-  await page.getByText('Nadaun, Himachal Pradesh, India', { exact: true }).click();
-  await page.getByTestId('searchstore-component').locator('div').filter({ hasText: 'Test Aloha0.4 kmdeliverydine-' }).getByTestId('order-now').click();
-  await page.locator('#category-name-CAT3417').getByTestId('category-click-test').click();
-  await page.getByTestId('add-to-cart-A-34660-0').click();
-  await page.getByTestId('product-listing-button').click();
-   await page.getByTestId('normal-icon').getByRole('button', { name: 'Close' }).click();
-  await page.getByTestId('navigation-checkout-desktop').click();
-  await page.getByTestId('continue-as-a-gust').click();
-  await page.locator('body').press('CapsLock');
-  await page.getByTestId('Full Name-masktextlabel-id').click();
-  await page.getByTestId('enter-Full Name-details').fill('D');
-  await page.getByTestId('enter-Full Name-details').press('CapsLock');
-  await page.getByTestId('enter-Full Name-details').fill('Disha');
-  await page.getByTestId('email-masktextlabel-id').click();
-  await page.getByTestId('enter-email-details').fill('dbc3466@yum.com');
-  await page.getByTestId('phoneNumber-masktextlabel-id').click();
-  await page.getByTestId('enter-phoneNumber-details').fill('9163527676');
-  await page.getByTestId('pay-button').click();
-  await page.getByText('UPI / Netbanking / Credit').click();
-  await page.getByTestId('continue-to-payment-btn').click();
-  //await page.goto('https://mercury-uat.phonepe.com/transact/simulator?token=3vHK4F49D5Rg1lCyH1p2HMenKGn81BkFPxuPbxrtF0m6y06i1126mD2jb', { waitUntil: 'load' });
-  await page.getByRole('radio', { name: 'Net Banking' }).check();
+//Start Order 
+ await page.goto(testData.url);
+  await page.getByTestId(locators.startOrderButton).click();
+  await page.getByTestId(locators.pickupOption).click();
+  await page.getByTestId(locators.storeSearchInput).fill(testData.storeSearch);
+  await page.getByText(testData.storeLocation, { exact: true }).click();
+  await page.getByTestId(locators.searchStoreComponent)
+   .locator('div')
+    .filter({ hasText: 'Test Aloha0.4 kmdeliverydine-' })
+    .getByTestId('order-now')
+    .click();
+
+  //Add Item 
+  await page.locator(locators.category).getByTestId('category-click-test').click();
+  await page.getByTestId(locators.addToCart).click();
+  await page.getByTestId(locators.closeCart).getByRole('button', { name: 'Close' }).click();
+  
+  //checkout
+  await page.getByTestId(locators.checkoutNav).click();
+  await page.getByTestId(locators.continueAsGuest).click();
+  await page.getByTestId(locators.fullNameInput).fill(testData.customer.name);
+  await page.getByTestId(locators.emailInput).fill(testData.customer.email);
+  await page.getByTestId(locators.phoneInput).fill(testData.customer.phone);
+  await page.getByTestId(locators.payButton).click();
+  await page.getByTestId(locators.phonePeOption).locator('span').click();
+  await page.getByTestId(locators.continueToPayment).click();
+
+//Payment
+// await page.getByTestId (locators.Netbanking).click()
+// await page.getByTestId (locators.continueToPayment).click()
+
+await page.getByRole('radio', { name: 'Net Banking' }).check();
   
   await page.getByRole('button', { name: 'PAY ₹' }).click();
   await page.getByText('Success').click();
@@ -44,3 +48,4 @@ expect(page.url()).toContain('/order-processing');
 await page.waitForURL('**/payment-success', { timeout: 50000, waitUntil: 'domcontentloaded'  });
 expect(page.url()).toContain('/payment-success');
 });
+
