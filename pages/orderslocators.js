@@ -19,6 +19,7 @@ export const locators = {
   continueToPayment: 'continue-to-payment-btn',
   Paytmoption: 'Net Banking',
   Netbanking: 'UPI / Netbanking / Credit',
+  cashPayment: 'radio-label-pay-by-cash',
   cardRadio: { role: 'radio', name: 'Card' },
   cardNumber: { role: 'textbox', name: 'Enter your card number' },
   cardHolder: { role: 'textbox', name: 'Enter card holder’s full name' },

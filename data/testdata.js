@@ -17,4 +17,11 @@ export const testData = {
     expiryYear: '25',
     cvv: '936',
   },
+  Creditcard: {
+    number: '4208585190116667',
+    holder:'Credit Card',
+    expiryMonth: '06',
+    expiryYear: '27',
+    cvv: '508',
+  }
 };
