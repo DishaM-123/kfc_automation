@@ -7,6 +7,7 @@ export const testData = {
   paytmstore: 'Gachibowli, Hyderabad, Telangana, India',
   dilstore: "Radha soami charitable",
   sfilstore: 'Hamirpur',
+  sfilloction: 'Hamirpur,Himachal Pradesh',
   customer: {
     name: 'Disha',
     email: 'dbc3466@yum.com',
